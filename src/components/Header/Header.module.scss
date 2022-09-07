@@ -1,0 +1,16 @@
+.header {
+    color: var(--primary);
+    background-color: white;
+    box-shadow: var(--box-shadow-nav);
+
+    div {
+        cursor: pointer;
+    }
+}
+
+.logo {
+    i {
+        font-size: 1.7rem;
+        margin-right: 0.5rem;
+    }
+}
