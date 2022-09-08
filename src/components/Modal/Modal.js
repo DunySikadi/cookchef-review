@@ -2,7 +2,9 @@ import styles from "./Modal.module.scss";
 
 export default function Modal({ title, handleDelete, setModal }) {
   return (
-    <div className={`calc d-flex align-items-center justify-content-center`}>
+    <div
+      className={`calc d-flex align-items-center justify-content-center ${styles.container}`}
+    >
       <div className={`${styles.card}`}>
         <div className="d-flex align-items-center">
           <i className={`fa-solid fa-circle-info mr-5`}></i>
