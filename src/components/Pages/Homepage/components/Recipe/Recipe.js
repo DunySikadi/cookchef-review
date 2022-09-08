@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ApiContext } from "../../../../../context/ApiContext";
+import Modal from "../../../../Modal/Modal";
 import styles from "./Recipe.module.scss";
 
 function Recipe({
@@ -8,6 +9,7 @@ function Recipe({
   toggleDeleteRecipe,
 }) {
   const base_url = useContext(ApiContext);
+  const [modal, setModal] = useState(false);
 
   async function handleLike() {
     try {
@@ -59,11 +61,20 @@ function Recipe({
         <i className="fa-solid fa-heart"></i>
       </button>
       <button
-        onClick={handleDelete}
+        onClick={() => {
+          setModal(true);
+        }}
         className={`${styles.btn} ${styles.btnDrop}`}
       >
         <i className="fa-solid fa-trash"></i>
       </button>
+      {modal && (
+        <Modal
+          title={title}
+          handleDelete={handleDelete}
+          setModal={setModal}
+        ></Modal>
+      )}
     </div>
   );
 }
