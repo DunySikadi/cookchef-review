@@ -1,7 +1,16 @@
+@use "../../../assets/styles/mixins" as mixin;
 .container{
     width: 800px;
 
     p {
         color: red;
+    }
+
+    @include mixin.md-lt {
+        max-width: 600px;
+    }
+
+    @include mixin.xs {
+       max-width: 350px;
     }
 }

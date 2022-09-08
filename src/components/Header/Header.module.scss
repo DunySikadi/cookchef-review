@@ -1,3 +1,4 @@
+@use '../../assets/styles/mixins' as mixin;
 .header {
     color: var(--primary);
     background-color: white;
@@ -13,4 +14,25 @@
         font-size: 1.7rem;
         margin-right: 0.5rem;
     }
+}
+
+.headerxs {
+    display: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    position: relative;
+    &:hover {
+        opacity: 0.8;
+    }
+    @include mixin.xs {
+        display: block;
+    }
+}
+
+.menu {
+
+    @include mixin.xs {
+        display: none;
+    }
+
 }

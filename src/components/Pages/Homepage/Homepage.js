@@ -5,6 +5,7 @@ import useFetchData from "../../../hook/useFecthData";
 import { useContext, useState } from "react";
 import { ApiContext } from "../../../context/ApiContext";
 import Loading from "../../Loading/Loading";
+import Carrousel from "./components/Carrousel/Carrousel";
 
 function Homepage() {
   const base_url = useContext(ApiContext);
@@ -46,6 +47,7 @@ function Homepage() {
               ))}
           </div>
         )}
+        <Carrousel />
       </div>
     </div>
   );

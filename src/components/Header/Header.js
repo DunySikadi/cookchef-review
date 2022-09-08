@@ -1,6 +1,10 @@
 import styles from "./Header.module.scss";
+import HeaderMenu from "./component/HeaderMenu/HeaderMenu";
+import { useState } from "react";
 
 function Header({ setPage }) {
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
     <header
       className={`${styles.header} d-flex justify-content-between align-items-center p-10`}
@@ -12,8 +16,7 @@ function Header({ setPage }) {
         <i className="fa-solid fa-kitchen-set"></i>
         <h1>COOKCHEF</h1>
       </div>
-
-      <ul className="d-flex">
+      <ul className={`d-flex ${styles.menu}`}>
         <li>
           <button
             onClick={() => setPage("Admin")}
@@ -31,6 +34,26 @@ function Header({ setPage }) {
         <li>
           <button className="btn btn-primary mr-15">connexion</button>
         </li>
+      </ul>
+
+      <ul className={`${styles.headerxs}`}>
+        <i
+          onClick={() => {
+            setShowMenu(true);
+          }}
+          className={`fa-solid fa-bars`}
+        ></i>
+        {showMenu && (
+          <>
+            <div
+              onClick={() => {
+                setShowMenu(false);
+              }}
+              className="calc"
+            ></div>
+            <HeaderMenu setPage={setPage}></HeaderMenu>
+          </>
+        )}
       </ul>
     </header>
   );

@@ -1,0 +1,21 @@
+@use "../../../../assets/styles/mixins" as mixin;
+
+.menu {
+    position: absolute;
+    width: 250px;
+    z-index: 1;
+    top: 50px;
+    right: 0px;
+    border-radius: 10px;
+    background-color: white;
+
+    li {
+        border-radius: 10px;
+        &:hover {
+        background-color: var(--primary);
+        color: white;
+        padding: 10px;
+        }
+
+    }
+}

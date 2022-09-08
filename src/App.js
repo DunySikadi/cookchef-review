@@ -11,7 +11,7 @@ function App() {
 
   return (
     <ApiContext.Provider value="https://restapi.fr/api/recipeCook">
-      <div className={`d-flex flex-column ${styles.appContainer}`}>
+      <div className={`d-flex flex-column ${styles.appContainer} br`}>
         <Header setPage={setPage}></Header>
         {page === "Home" && <Homepage></Homepage>}
         {page === "Admin" && <Admin></Admin>}
