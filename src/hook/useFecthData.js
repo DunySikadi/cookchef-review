@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useFetchData(Base_url) {
+export default function useFetchData(Base_url, pages) {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -10,10 +10,14 @@ export default function useFetchData(Base_url) {
     async function FetchData() {
       try {
         setLoading(true);
-        const response = await fetch(Base_url);
+        const response = await fetch(
+          `${Base_url}/?skip=${(pages - 1) * 6}&limit=6`
+        );
         if (response.ok && !cancel) {
           const data = await response.json();
-          Array.isArray(data) ? setRecipes([...data]) : setRecipes([data]);
+          Array.isArray(data)
+            ? setRecipes((x) => [...x, ...data])
+            : setRecipes((x) => [...x, data]);
         } else {
         }
       } catch (error) {
@@ -26,7 +30,7 @@ export default function useFetchData(Base_url) {
     }
     FetchData();
     return () => (cancel = true);
-  }, [Base_url]);
+  }, [Base_url, pages]);
 
-  return [[recipes, setRecipes], loading, , error];
+  return [[recipes, setRecipes], loading, error];
 }

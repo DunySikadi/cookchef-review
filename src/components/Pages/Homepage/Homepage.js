@@ -5,11 +5,11 @@ import useFetchData from "../../../hook/useFecthData";
 import { useContext, useState } from "react";
 import { ApiContext } from "../../../context/ApiContext";
 import Loading from "../../Loading/Loading";
-import Carrousel from "./components/Carrousel/Carrousel";
 
 function Homepage() {
   const base_url = useContext(ApiContext);
-  const [[recipes, setRecipes], loading, , error] = useFetchData(base_url);
+  const [pages, setPages] = useState(1);
+  const [[recipes, setRecipes], loading] = useFetchData(base_url, pages);
   const [filter, setFilter] = useState("");
 
   function updateRecipe(updatedRecipe) {
@@ -29,7 +29,7 @@ function Homepage() {
       <h1 className="mb-20">Découvrez nos nouvelles recettes</h1>
       <div className="card flex-fill d-flex flex-column p-30">
         <Search setFilter={setFilter} />
-        {loading ? (
+        {loading && !recipes.length ? (
           <Loading></Loading>
         ) : (
           <div className={`${styles.grid}`}>
@@ -47,10 +47,19 @@ function Homepage() {
               ))}
           </div>
         )}
-        <Carrousel />
+        <div className="d-flex justify-content-center align-items-center p-20">
+          <button
+            onClick={() => {
+              setPages(pages + 1);
+            }}
+            className="btn btn-primary"
+          >
+            charger plus de recettes
+          </button>
+        </div>
+        {/* <Carrousel /> */}
       </div>
     </div>
   );
 }
-
 export default Homepage;
